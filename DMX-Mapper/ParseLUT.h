@@ -322,8 +322,6 @@ void readCustom(File mapFile, uint16_t *buf) {
       currLine++;
     }
   }
-  
-  mapFile.close();
 }
 
 // Read LUT into buffer
