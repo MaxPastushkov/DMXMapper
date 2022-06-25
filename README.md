@@ -1,2 +1,2 @@
 # DMXMapper
-DMX Real-time Lookup Table
+DMX Lookup Table
