@@ -19,6 +19,18 @@ The DMX Mapper is a small, headless device which features a DMX input and a DMX 
 - Powerered by USB, which can be plugged into the wall or a PC, due to its low power comsumption.
 - Writes a detailed logfile to the microSD card, which can be used to easily diagnose any issues.
 
+## Usage
+Create a CSV file named **dmx-mapper.csv** in the root directory of a FAT32-formatted microSD card. The first column of the file is the input channel, the second column is the output channel, and the third column is for any comments.
+### Output channel format
+The format of the output channel column can be:
+- A single channel between 0 and 512 (e.g. 20), which maps the corresponding input channel to just the specified output channel.
+- Multiple comma-separated channels (e.g. 20, 21, 22), which map the corresponding input channel to all of the listed output channels.
+- A single channel followed by a *@* and a value (e.g. 30@255), which sends the specified value to the output channel.
+### Input channel format
+The input channel column must have a valid number between 0 and 512. In the case of a constant specified in the output channel, the input channel can be any value.
+### Logfile
+After reading the LUT from the microSD card, the device will write a logfile named **dmx-mapper.log**, which will contain any warnings and shows which channels are mapped to what. Be careful, as the previous logfile gets erased when the device starts.
+
 ## Design
 ### Hardware
 The DMX Mapper is based on the Teensy 4.1 microcontroller, which is an extremely fast Arduino-compatible MCU. For sending and receiving DMX signals, the device uses two MAX485 chips. The schematics and the EasyEDA PCB layout are in the [PCB](https://github.com/MaxPastushkov/DMXMapper/tree/master/PCB) folder.
